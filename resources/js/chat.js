@@ -95,10 +95,29 @@ document.addEventListener('DOMContentLoaded', () => {
             : '';
 
        
-        const heure = new Date(message.created_at).toLocaleTimeString('fr-FR', {
-            hour: '2-digit',
-            minute: '2-digit'
-        });
+        const dateMessage = new Date(message.created_at);
+const maintenant = new Date();
+
+let dateAffichee;
+
+// Vérifie si c'est aujourd’hui
+if (dateMessage.toDateString() === maintenant.toDateString()) {
+    dateAffichee = "Aujourd’hui";
+} else {
+    const hier = new Date();
+    hier.setDate(maintenant.getDate() - 1);
+
+    if (dateMessage.toDateString() === hier.toDateString()) {
+        dateAffichee = "Hier";
+    } else {
+        dateAffichee = dateMessage.toLocaleDateString('fr-FR');
+    }
+}
+
+const heure = dateMessage.toLocaleTimeString('fr-FR', {
+    hour: '2-digit',
+    minute: '2-digit'
+});
 
         wrapper.innerHTML = `
             <div class="bulle ${estMoi ? 'moi' : 'autre'} ${estIA ? 'ia' : ''}">

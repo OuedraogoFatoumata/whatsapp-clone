@@ -173,9 +173,15 @@
                             <p class="bulle-texte">{{ $message->body }}</p>
 
                             <div class="bulle-meta">
-                                <span class="bulle-heure">
-                                    {{ $message->created_at->format('H:i') }}
-                                </span>
+                              <span class="bulle-heure">
+                                   @if($message->created_at->isToday())
+                                         Aujourd’hui {{ $message->created_at->format('H:i') }}
+                                     @elseif($message->created_at->isYesterday())
+                                          Hier {{ $message->created_at->format('H:i') }}
+                                     @else
+                                       {{ $message->created_at->format('d/m/Y H:i') }}
+                                     @endif
+                                          </span>
                                 @if($estMoi)
                                     <span class="coches">✓✓</span>
                                 @endif
@@ -199,13 +205,13 @@
                   
                     <div style="position:relative;">
                        <button class="btn-ia" id="btn-ia" title="Assistant IA">
-    <svg viewBox="0 0 24 24" fill="currentColor" style="width:22px;height:22px;">
-        <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M9 11a2 2 0 0 0-2 2 2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2m6 0a2 2 0 0 0-2 2 2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2m-3 7a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1z"/>
-    </svg>
-</button>
+               <svg viewBox="0 0 24 24" fill="currentColor" style="width:22px;height:22px;">
+              <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M9 11a2 2 0 0 0-2 2 2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2m6 0a2 2 0 0 0-2 2 2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2m-3 7a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1z"/>
+               </svg>
+                </button>
 
                         <div class="menu-ia" id="menu-ia">
-                            <p class="menu-ia-titre">✨ Assistant IA</p>
+                            <p class="menu-ia-titre">Assistant IA</p>
 
                             <button class="menu-ia-item" id="ia-recap">
                                 <span></span>
