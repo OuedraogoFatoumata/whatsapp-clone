@@ -100,7 +100,7 @@ const maintenant = new Date();
 
 let dateAffichee;
 
-// Vérifie si c'est aujourd’hui
+
 if (dateMessage.toDateString() === maintenant.toDateString()) {
     dateAffichee = "Aujourd’hui";
 } else {
