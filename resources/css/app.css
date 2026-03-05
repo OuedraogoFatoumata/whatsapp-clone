@@ -1,27 +1,28 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* ============================================================
+   app.css — Style principal WhatsApp Clone
+   Toutes les couleurs et composants de l'application
+   ============================================================ */
 
-
-
+/* ── VARIABLES DE COULEURS (palette WhatsApp) ── */
 :root {
-    --bg-principal:       #111b21; 
-    --bg-sidebar:         #111b21;  
-    --bg-carte:           #202c33;  
-    --bg-input:           #2a3942;  
-    --bg-message-moi:     #005c4b;  
-    --bg-message-autre:   #202c33; 
-    --bg-hover:           #2a3942;  
-    --vert-principal:     #25d366;  
-    --vert-fonce:         #128c7e;  
-    --texte-principal:    #e9edef;  
-    --texte-secondaire:   #8696a0;  
-    --texte-heure:        #667781;  
-    --bordure:            #2a3942;  
-    --rouge-erreur:       #f15c6d;  
-    --orange-ia:          #f0ad4e; 
+    --bg-principal:       #111b21;  /* fond noir/vert très foncé */
+    --bg-sidebar:         #111b21;  /* fond de la sidebar */
+    --bg-carte:           #202c33;  /* fond des cartes et panels */
+    --bg-input:           #2a3942;  /* fond des champs de saisie */
+    --bg-message-moi:     #005c4b;  /* bulle de mes messages (vert foncé) */
+    --bg-message-autre:   #202c33;  /* bulle des autres messages */
+    --bg-hover:           #2a3942;  /* survol d'un élément */
+    --vert-principal:     #25d366;  /* vert WhatsApp */
+    --vert-fonce:         #128c7e;  /* vert foncé WhatsApp */
+    --texte-principal:    #e9edef;  /* texte blanc cassé */
+    --texte-secondaire:   #8696a0;  /* texte gris */
+    --texte-heure:        #667781;  /* couleur de l'heure */
+    --bordure:            #2a3942;  /* couleur des bordures */
+    --rouge-erreur:       #f15c6d;  /* rouge pour les erreurs */
+    --orange-ia:          #f0ad4e;  /* orange pour le module IA */
 }
 
+/* ── RESET ET BASE ── */
 * {
     margin: 0;
     padding: 0;
@@ -36,6 +37,7 @@ html, body {
     font-size: 15px;
 }
 
+/* Scrollbar personnalisée style WhatsApp */
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -50,7 +52,9 @@ html, body {
     background: var(--texte-secondaire);
 }
 
-
+/* ============================================================
+   LAYOUT PRINCIPAL DU CHAT
+   ============================================================ */
 
 .chat-layout {
     display: flex;
@@ -58,6 +62,9 @@ html, body {
     overflow: hidden;
 }
 
+/* ============================================================
+   SIDEBAR GAUCHE
+   ============================================================ */
 
 .sidebar {
     width: 400px;
@@ -69,7 +76,7 @@ html, body {
     height: 100vh;
 }
 
-
+/* En-tête de la sidebar */
 .sidebar-header {
     display: flex;
     align-items: center;
@@ -86,7 +93,7 @@ html, body {
     gap: 12px;
 }
 
-
+/* Avatar de l'utilisateur connecté */
 .avatar-utilisateur {
     width: 40px;
     height: 40px;
@@ -109,7 +116,7 @@ html, body {
     object-fit: cover;
 }
 
-
+/* Icônes de la sidebar (recherche, menu...) */
 .sidebar-icones {
     display: flex;
     align-items: center;
@@ -140,6 +147,7 @@ html, body {
     height: 22px;
 }
 
+/* ── BARRE DE RECHERCHE ── */
 .barre-recherche {
     padding: 8px 12px;
     background-color: var(--bg-sidebar);
@@ -175,12 +183,13 @@ html, body {
     color: var(--texte-secondaire);
 }
 
+/* ── RÉSULTATS DE RECHERCHE ── */
 .resultats-recherche {
     background-color: var(--bg-carte);
     border-bottom: 1px solid var(--bordure);
     max-height: 300px;
     overflow-y: auto;
-    display: none; 
+    display: none; /* caché par défaut */
 }
 
 .resultats-recherche.visible {
@@ -211,7 +220,7 @@ html, body {
     font-size: 13px;
 }
 
-
+/* ── LISTE DES CONVERSATIONS ── */
 .liste-conversations {
     flex: 1;
     overflow-y: auto;
@@ -236,7 +245,7 @@ html, body {
     background-color: var(--bg-input);
 }
 
-
+/* Avatar dans la liste */
 .avatar {
     width: 48px;
     height: 48px;
@@ -259,7 +268,7 @@ html, body {
     object-fit: cover;
 }
 
-
+/* Point vert "en ligne" */
 .statut-en-ligne {
     position: absolute;
     bottom: 2px;
@@ -273,7 +282,7 @@ html, body {
 
 .conversation-info {
     flex: 1;
-    min-width: 0; 
+    min-width: 0; /* important pour le text-overflow */
 }
 
 .conversation-info-haut {
@@ -306,7 +315,7 @@ html, body {
     text-overflow: ellipsis;
 }
 
-
+/* Badge messages non lus */
 .badge-non-lu {
     background-color: var(--vert-principal);
     color: var(--bg-principal);
@@ -321,7 +330,9 @@ html, body {
     padding: 0 4px;
 }
 
-
+/* ============================================================
+   ZONE PRINCIPALE DU CHAT
+   ============================================================ */
 
 .chat-principal {
     flex: 1;
@@ -329,11 +340,11 @@ html, body {
     flex-direction: column;
     height: 100vh;
     background-color: var(--bg-principal);
-   
+    /* fond avec motif discret comme WhatsApp */
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232a3942' fill-opacity='0.3'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
-
+/* Page d'accueil quand aucune conversation n'est sélectionnée */
 .chat-vide {
     flex: 1;
     display: flex;
@@ -364,7 +375,7 @@ html, body {
     line-height: 1.6;
 }
 
-
+/* ── EN-TÊTE DU CHAT ── */
 .chat-header {
     display: flex;
     align-items: center;
@@ -398,6 +409,7 @@ html, body {
     color: var(--texte-secondaire);
 }
 
+/* ── ZONE DES MESSAGES ── */
 .zone-messages {
     flex: 1;
     overflow-y: auto;
@@ -407,17 +419,18 @@ html, body {
     gap: 4px;
 }
 
-
+/* ── BULLES DE MESSAGES ── */
 .message-wrapper {
     display: flex;
     margin-bottom: 2px;
 }
 
+/* Mes messages → à droite */
 .message-wrapper.moi {
     justify-content: flex-end;
 }
 
-
+/* Messages des autres → à gauche */
 .message-wrapper.autre {
     justify-content: flex-start;
 }
@@ -431,18 +444,19 @@ html, body {
     word-wrap: break-word;
 }
 
+/* Ma bulle */
 .bulle.moi {
     background-color: var(--bg-message-moi);
     border-bottom-right-radius: 2px;
 }
 
-
+/* Bulle de l'autre */
 .bulle.autre {
     background-color: var(--bg-message-autre);
     border-bottom-left-radius: 2px;
 }
 
-
+/* Bulle IA */
 .bulle.ia {
     background-color: #1a2a1a;
     border: 1px solid var(--orange-ia);
@@ -468,17 +482,17 @@ html, body {
     font-size: 11px;
 }
 
-
+/* Coches de lecture (✓✓) */
 .coches {
     color: var(--texte-heure);
     font-size: 14px;
 }
 
 .coches.lu {
-    color: #53bdeb; 
+    color: #53bdeb; /* bleu pour les messages lus */
 }
 
-
+/* Badge IA dans la bulle */
 .badge-ia {
     display: inline-flex;
     align-items: center;
@@ -492,7 +506,7 @@ html, body {
     margin-bottom: 6px;
 }
 
-
+/* Indicateur "en train d'écrire..." */
 .indicateur-frappe {
     display: flex;
     align-items: center;
@@ -520,7 +534,7 @@ html, body {
     30% { transform: translateY(-6px); opacity: 1; }
 }
 
-
+/* ── PIED DU CHAT (saisie) ── */
 .chat-pied {
     background-color: var(--bg-carte);
     padding: 10px 16px;
@@ -534,7 +548,7 @@ html, body {
     gap: 8px;
 }
 
-
+/* Bouton IA */
 .btn-ia {
     width: 42px;
     height: 42px;
@@ -645,6 +659,7 @@ html, body {
     color: var(--texte-secondaire);
 }
 
+/* Bouton envoyer */
 .btn-envoyer {
     width: 42px;
     height: 42px;
@@ -673,6 +688,9 @@ html, body {
     fill: white;
 }
 
+/* ============================================================
+   FORMULAIRES AUTH (Login / Register)
+   ============================================================ */
 
 .auth-page {
     min-height: 100vh;
@@ -807,7 +825,9 @@ html, body {
     font-size: 13px;
 }
 
-
+/* ============================================================
+   CHARGEMENT IA (spinner)
+   ============================================================ */
 
 .spinner-ia {
     display: inline-block;
@@ -823,28 +843,75 @@ html, body {
     to { transform: rotate(360deg); }
 }
 
-
+/* ============================================================
+   RESPONSIVE — Mobile
+   ============================================================ */
 
 @media (max-width: 768px) {
     .sidebar {
         width: 100%;
         position: absolute;
         z-index: 10;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.cachee {
+        transform: translateX(-100%);
+        pointer-events: none;
     }
 
     .chat-principal {
         display: none;
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: 20;
     }
 
     .chat-principal.actif {
         display: flex;
-        position: absolute;
-        width: 100%;
-        z-index: 20;
     }
 
     .zone-messages {
         padding: 10px 4%;
     }
+
+    /* Bouton retour ← visible uniquement sur mobile */
+    .btn-retour-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: var(--texte-secondaire);
+        flex-shrink: 0;
+        margin-right: 4px;
+        transition: background-color 0.2s;
+    }
+
+    .btn-retour-mobile:hover {
+        background-color: var(--bg-hover);
+        color: var(--texte-principal);
+    }
+
+    .btn-retour-mobile svg {
+        width: 22px;
+        height: 22px;
+    }
 }
 
+/* Cacher le bouton retour sur PC */
+@media (min-width: 769px) {
+    .btn-retour-mobile {
+        display: none;
+    }
+}
