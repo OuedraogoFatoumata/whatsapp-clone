@@ -26,7 +26,8 @@ Route::get('/', function () {
 
     Route::get('/messages/{conversation}', [App\Http\Controllers\MessageController::class, 'index'])->name('messages.index');
     Route::post('/messages', [App\Http\Controllers\MessageController::class, 'store'])->name('messages.store');
-
+    
+Route::post('/users/statut', [UserController::class, 'updateStatut'])->name('users.statut');
     
     Route::get('/users/search', [UserController::class, 'search'])->name('users.search');
 

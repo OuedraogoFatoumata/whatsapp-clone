@@ -39,4 +39,13 @@ class UserController extends Controller
 
         return response()->json($utilisateurs);
     }
+    public function updateStatut(Request $request)
+{
+    auth()->user()->update([
+        'last_seen' => now(),
+        'is_online' => true,
+    ]);
+
+    return response()->json(['success' => true]);
+}
 }
