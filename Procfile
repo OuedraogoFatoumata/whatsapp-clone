@@ -1,1 +1,1 @@
-web: php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
+web: composer dump-autoload --optimize && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
