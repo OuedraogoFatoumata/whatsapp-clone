@@ -37,7 +37,7 @@ html, body {
 
 .chat-layout { display: flex; height: 100vh; overflow: hidden; }
 
-/* ── SIDEBAR ── */
+
 .sidebar {
     width: 400px;
     min-width: 300px;
@@ -159,11 +159,17 @@ html, body {
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
-.conversation-heure { color: var(--texte-heure); font-size: 12px; flex-shrink: 0; }
+.conversation-heure { 
+    color: var(--texte-heure); 
+    font-size: 12px; 
+    flex-shrink: 0; }
 
 .conversation-apercu {
-    color: var(--texte-secondaire); font-size: 13px;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    color: var(--texte-secondaire);
+     font-size: 13px;
+    white-space: nowrap; 
+    overflow: hidden;
+     text-overflow: ellipsis;
 }
 
 .badge-non-lu {
@@ -173,10 +179,12 @@ html, body {
     display: flex; align-items: center; justify-content: center; padding: 0 4px;
 }
 
-/* ── CHAT PRINCIPAL ── */
+
 .chat-principal {
-    flex: 1; display: flex; flex-direction: column;
-    height: 100vh; background-color: var(--bg-principal);
+    flex: 1; display: flex;
+     flex-direction: column;
+    height: 100vh;
+     background-color: var(--bg-principal);
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232a3942' fill-opacity='0.3'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
@@ -186,25 +194,42 @@ html, body {
     gap: 16px; color: var(--texte-secondaire);
 }
 
-.chat-vide svg { width: 80px; height: 80px; fill: var(--texte-secondaire); opacity: 0.4; }
-.chat-vide h2 { color: var(--texte-principal); font-size: 24px; font-weight: 300; }
-.chat-vide p { font-size: 14px; text-align: center; max-width: 300px; line-height: 1.6; }
+.chat-vide svg { 
+    width: 80px;
+     height: 80px;
+      fill: var(--texte-secondaire);
+     opacity: 0.4; }
+.chat-vide h2 { 
+    color: var(--texte-principal); 
+    font-size: 24px; 
+    font-weight: 300; }
+.chat-vide p { 
+    font-size: 14px; 
+    text-align: center;
+     max-width: 300px; 
+     line-height: 1.6; }
 
-/* ── HEADER CHAT ── */
+
 .chat-header {
     display: flex; align-items: center;
-    padding: 10px 16px; gap: 8px;
+    padding: 10px 16px; gap: 0px;
     background-color: var(--bg-carte);
     height: 60px; border-bottom: 1px solid var(--bordure);
     flex-shrink: 0;
 }
 
-.chat-header-gauche { display: flex; align-items: center; gap: 12px; cursor: pointer; flex: 1; }
+.chat-header-gauche { 
+       display: flex;
+       align-items: center;
+        gap: 12px;
+        cursor: pointer;
+        flex: 1; }
+
 .chat-header-info h3 { color: var(--texte-principal); font-size: 16px; font-weight: 500; }
 .chat-header-info p { color: var(--vert-principal); font-size: 13px; }
 .chat-header-info .hors-ligne { color: var(--texte-secondaire); }
 
-/* Bouton retour ← caché sur PC, affiché sur mobile via media query */
+
 .btn-retour-mobile {
     display: none;
     align-items: center; justify-content: center;
@@ -217,7 +242,7 @@ html, body {
 .btn-retour-mobile:hover { background-color: var(--bg-hover); color: var(--texte-principal); }
 .btn-retour-mobile svg { width: 22px; height: 22px; }
 
-/* ── MESSAGES ── */
+
 .zone-messages {
     flex: 1; overflow-y: auto;
     padding: 20px 10%;
@@ -420,12 +445,10 @@ html, body {
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ══════════════════════════════════════
-   RESPONSIVE MOBILE
-══════════════════════════════════════ */
+
 @media (max-width: 768px) {
 
-    /* Sidebar plein écran, glissement */
+   
     .sidebar {
         width: 100%;
         height: 100vh;
@@ -435,12 +458,12 @@ html, body {
         transition: transform 0.3s ease;
     }
 
-    /* Sidebar cachée → glisse à gauche */
+    
     .sidebar.cachee {
         transform: translateX(-100%);
     }
 
-    /* Chat caché par défaut */
+   
     .chat-principal {
         display: none;
         position: absolute;
@@ -450,12 +473,12 @@ html, body {
         z-index: 20;
     }
 
-    /* Chat visible quand .actif */
+    
     .chat-principal.actif {
         display: flex;
     }
 
-    /* Bouton retour ← affiché */
+    
     .btn-retour-mobile {
         display: flex;
     }
