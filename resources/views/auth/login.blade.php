@@ -49,7 +49,7 @@
                     id="email"
                     name="email"
                     value="{{ old('email') }}"
-                    placeholder="jean@exemple.com"
+                    placeholder="Fatou@exemple.com"
                     required
                     autofocus
                 >
