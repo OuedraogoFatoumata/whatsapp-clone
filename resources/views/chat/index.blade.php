@@ -228,7 +228,9 @@
                         </div>
                     </div>
 
-                   <form id="form-message" style="flex:1;display:flex;gap:8px;align-items:flex-end;"> 
+                    <form id="form-message" action="{{ route('messages.store') }}" method="POST" style="flex:1;display:flex;gap:8px;align-items:flex-end;">
+                        @csrf
+                         <input type="hidden" name="conversation_id" value="{{ $conversationActive->id }}">   
                             
                         <div class="input-message-wrapper">
                             <textarea
