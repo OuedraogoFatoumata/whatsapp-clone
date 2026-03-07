@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Http;
 class AiController extends Controller
 {
     private string $apiUrl = 'https://api.groq.com/openai/v1/chat/completions';
-    private string $model  = 'llama3-8b-8192';
-
+    private string $model  = 'llama-3.3-70b-versatile';
    
     private function appelGroq(string $prompt): string
     {
