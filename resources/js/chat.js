@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
    
     const conversationId = window.conversationId || null;
 
+    const btnEnvoyer = document.getElementById('btn-envoyer');
    
     function scrollerVersBas() {
         if (zoneMessages) {
@@ -62,6 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 formMessage.dispatchEvent(new Event('submit'));
             }
         });
+
+        if (btnEnvoyer) {
+    btnEnvoyer.addEventListener('click', () => {
+        formMessage.dispatchEvent(new Event('submit'));
+    });
+}
 
 
         inputMessage.addEventListener('input', () => {
