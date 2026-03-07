@@ -214,15 +214,15 @@
                         <div class="menu-ia" id="menu-ia">
                             <p class="menu-ia-titre">Assistant IA</p>
                             <button class="menu-ia-item" id="ia-recap">
-                                <span>📋</span>
+                                <span></span>
                                 <span>Résumer la conversation</span>
                             </button>
                             <button class="menu-ia-item" id="ia-suggerer">
-                                <span>💡</span>
+                                <span></span>
                                 <span>Proposer une réponse</span>
                             </button>
                             <button class="menu-ia-item" id="ia-reformuler" style="display:none;">
-                                <span>✏️</span>
+                                <span></span>
                                 <span>Reformuler mon message</span>
                             </button>
                         </div>
@@ -261,7 +261,7 @@
     </div>
 </div>
 
-{{-- JS RESPONSIVE MOBILE --}}
+
 <script>
     function ouvrirChatMobile() {
         if (window.innerWidth <= 768) {
@@ -275,7 +275,7 @@
         document.getElementById('sidebar').classList.remove('cachee');
     }
 
-    // Si une conversation est déjà ouverte au chargement → afficher le chat sur mobile
+    
     @if($conversationActive)
         if (window.innerWidth <= 768) {
             ouvrirChatMobile();
