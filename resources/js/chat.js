@@ -344,7 +344,7 @@ const heure = dateMessage.toLocaleTimeString('fr-FR', {
 
            
             if (action === 'reformulate') {
-                donnees.draft_text = inputMessage.value.trim();
+                donnees.texte = inputMessage.value.trim();
                 if (!donnees.draft_text) {
                     afficherNotification('Écris d\'abord un message à reformuler', 'info');
                     return;
@@ -352,7 +352,7 @@ const heure = dateMessage.toLocaleTimeString('fr-FR', {
             }
 
             const reponse = await axios.post(`/ai/${action}`, donnees);
-            const resultat = reponse.data.result;
+            const resultat = reponse.data.reponse;
 
             if (action === 'recap') {
                
