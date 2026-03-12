@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: whatsapp-clone
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
