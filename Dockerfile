@@ -5,6 +5,8 @@ RUN apt-get update && apt-get install -y \
     libpng-dev libonig-dev libxml2-dev \
     && docker-php-ext-install pdo pdo_mysql mbstring
 
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
 WORKDIR /var/www/html
 
 COPY . .
@@ -16,4 +18,4 @@ RUN php artisan config:cache && php artisan route:cache
 
 EXPOSE 80
 
-CMD php artisan migrate --force && apache2-foreground
+CMD ["sh", "-c", "php artisan migrate --force && apache2-foreground"]
