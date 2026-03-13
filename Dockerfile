@@ -16,9 +16,7 @@ COPY . .
 
 RUN composer install --optimize-autoloader --no-dev
 RUN npm install && npm run build
-RUN php artisan config:cache && php artisan route:cache
-RUN php artisan storage:link && chmod -R 775 storage bootstrap/cache
-RUN php artisan key:generate --force
+RUN chmod -R 775 storage bootstrap/cache
 
 EXPOSE 8080
 
