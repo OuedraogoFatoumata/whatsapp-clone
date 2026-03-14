@@ -16,9 +16,10 @@ COPY . .
 
 RUN composer install --optimize-autoloader --no-dev
 RUN npm install && npm run build
+
 RUN php artisan config:cache && php artisan route:cache
 RUN php artisan storage:link && chmod -R 775 storage bootstrap/cache
 
-EXPOSE 8080
+EXPOSE 10000
 
-CMD ["sh", "-c", "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080"]
+CMD ["sh", "-c", "php artisan migrate --force && apache2-foreground"]
