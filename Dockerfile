@@ -20,6 +20,9 @@ RUN npm install && npm run build
 RUN php artisan config:cache && php artisan route:cache
 RUN php artisan storage:link && chmod -R 775 storage bootstrap/cache
 
+
+RUN sed -i 's/80/${PORT}/g' /etc/apache2/ports.conf /etc/apache2/sites-available/000-default.conf
+
 EXPOSE 10000
 
 CMD ["sh", "-c", "php artisan migrate --force && apache2-foreground"]
