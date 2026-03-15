@@ -39,8 +39,6 @@
        
         <form method="POST" action="{{ route('login') }}">
             @csrf
-
-          
             <div class="form-groupe">
                 <label class="form-label" for="email">Adresse email</label>
                 <input
@@ -86,14 +84,14 @@
                 @endif
             </div>
 
-            {{-- Bouton --}}
+           
             <button type="submit" class="btn-principal">
                 Se connecter
             </button>
 
         </form>
 
-        {{-- Lien inscription --}}
+       
         <div class="auth-lien">
             Pas encore de compte ?
             <a href="{{ route('register') }}">S'inscrire</a>

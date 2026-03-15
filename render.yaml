@@ -3,4 +3,4 @@ services:
     name: whatsapp-clone
     env: docker
     dockerfilePath: ./Dockerfile
-    plan: free
+    plan: free 

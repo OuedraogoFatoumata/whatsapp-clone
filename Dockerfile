@@ -15,5 +15,6 @@ RUN mkdir -p storage/framework/{sessions,views,cache} storage/logs bootstrap/cac
     && chown -R www-data:www-data storage bootstrap/cache
 RUN php artisan storage:link
 RUN sed -i 's/80/${PORT}/g' /etc/apache2/ports.conf /etc/apache2/sites-available/000-default.conf
+RUN apt-get install -y ca-certificates && update-ca-certificates
 EXPOSE 10000
 CMD ["sh", "-c", "php artisan config:cache && php artisan route:cache && php artisan migrate --force && apache2-foreground"]
