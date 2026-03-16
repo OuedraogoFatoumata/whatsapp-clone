@@ -11,6 +11,12 @@ RUN a2enmod rewrite
 WORKDIR /var/www/html
 COPY . .
 RUN composer install --optimize-autoloader --no-dev
+ARG VITE_PUSHER_APP_KEY=2d1240bfd8b7a94f8e5f
+ARG VITE_PUSHER_APP_CLUSTER=mt1
+ARG VITE_PUSHER_PORT=443
+ENV VITE_PUSHER_APP_KEY=$VITE_PUSHER_APP_KEY
+ENV VITE_PUSHER_APP_CLUSTER=$VITE_PUSHER_APP_CLUSTER
+ENV VITE_PUSHER_PORT=$VITE_PUSHER_PORT
 RUN npm install && npm run build
 RUN mkdir -p storage/framework/{sessions,views,cache} storage/logs bootstrap/cache \
     && chmod -R 777 storage bootstrap/cache \
