@@ -43,16 +43,17 @@ class Conversation extends Model
     }
     public function messagesNonLus($userId)
 {
-    $dernierEnvoi = $this->messages()
-        ->where('user_id', $userId)
-        ->latest()
+    $pivot = $this->utilisateurs()
+        ->where('users.id', $userId)
         ->first();
+
+    $lastRead = $pivot ? $pivot->pivot->last_read_at : null;
 
     $query = $this->messages()
         ->where('user_id', '!=', $userId);
 
-    if ($dernierEnvoi) {
-        $query->where('created_at', '>', $dernierEnvoi->created_at);
+    if ($lastRead) {
+        $query->where('created_at', '>', $lastRead);
     }
 
     return $query->count();
