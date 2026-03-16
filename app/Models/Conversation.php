@@ -41,6 +41,22 @@ class Conversation extends Model
     {
         return $this->hasOne(Message::class)->latestOfMany();
     }
+    public function messagesNonLus($userId)
+{
+    $dernierEnvoi = $this->messages()
+        ->where('user_id', $userId)
+        ->latest()
+        ->first();
+
+    $query = $this->messages()
+        ->where('user_id', '!=', $userId);
+
+    if ($dernierEnvoi) {
+        $query->where('created_at', '>', $dernierEnvoi->created_at);
+    }
+
+    return $query->count();
+}
 
    
     public function autreUtilisateur()

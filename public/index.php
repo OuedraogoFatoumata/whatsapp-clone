@@ -4,11 +4,11 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
-// LOG 1 - Démarrage
+
 file_put_contents(__DIR__.'/../storage/logs/diagnostic.log', 
     "[".date('Y-m-d H:i:s')."] ETAPE 1: index.php charge\n", FILE_APPEND);
 
-// Maintenance mode
+
 if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
     require $maintenance;
 }

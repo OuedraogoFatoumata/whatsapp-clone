@@ -81,23 +81,30 @@
                     </div>
 
                     <div class="conversation-info">
-                        <div class="conversation-info-haut">
-                            <span class="conversation-nom">{{ $nomAffiche }}</span>
-                            @if($dernierMsg)
-                                <span class="conversation-heure">
-                                    {{ $dernierMsg->created_at->format('H:i') }}
-                                </span>
-                            @endif
-                        </div>
-                        <p class="conversation-apercu">
-                            @if($dernierMsg)
-                                {{ Str::limit($dernierMsg->body, 40) }}
-                            @else
-                                <em>Aucun message</em>
-                            @endif
-                        </p>
-                    </div>
-
+    <div class="conversation-info-haut">
+        <span class="conversation-nom">{{ $nomAffiche }}</span>
+        @if($dernierMsg)
+            <span class="conversation-heure">
+                {{ $dernierMsg->created_at->format('H:i') }}
+            </span>
+        @endif
+    </div>
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <p class="conversation-apercu" style="margin:0;">
+            @if($dernierMsg)
+                {{ Str::limit($dernierMsg->body, 40) }}
+            @else
+                <em>Aucun message</em>
+            @endif
+        </p>
+        @php $nonLus = $conv->messagesNonLus(auth()->id()); @endphp
+        @if($nonLus > 0)
+            <span style="background:#25d366;color:white;border-radius:50%;min-width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:bold;padding:0 4px;">
+                {{ $nonLus }}
+            </span>
+        @endif
+    </div>
+</div>
                 </a>
 
             @empty
