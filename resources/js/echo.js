@@ -7,3 +7,4 @@ window.Echo = new Echo({
     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
     forceTLS: true,
 });
+console.log("Pusher key:", import.meta.env.VITE_PUSHER_APP_KEY);
