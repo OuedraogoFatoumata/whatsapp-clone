@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AiController;
+ use App\Http\Controllers\StatusController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,6 +36,11 @@ Route::post('/users/statut', [UserController::class, 'updateStatut'])->name('use
     Route::post('/ai/recap',       [AiController::class, 'recap'])->name('ai.recap');
     Route::post('/ai/suggest',     [AiController::class, 'suggest'])->name('ai.suggest');
     Route::post('/ai/reformulate', [AiController::class, 'reformulate'])->name('ai.reformulate');
+
+   
+
+Route::post('/status', [StatusController::class, 'store'])->name('status.store');
+Route::get('/status', [StatusController::class, 'index'])->name('status.index');
 
 });
 

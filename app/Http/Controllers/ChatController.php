@@ -1,34 +1,44 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Conversation;
 use App\Models\User;
+use App\Models\Status;
 use Illuminate\Http\Request;
 
 class ChatController extends Controller
 {
-   
     public function index()
     {
         $conversations = auth()->user()
             ->conversations()
             ->with([
-                'dernierMessage.utilisateur', 
-                'utilisateurs',              
+                'dernierMessage.utilisateur',
+                'utilisateurs',
             ])
             ->get()
             ->sortByDesc(function ($conv) {
-                
                 return $conv->dernierMessage
                     ? $conv->dernierMessage->created_at
                     : $conv->created_at;
             });
 
+        $statuses = Status::where('created_at', '>=', now()->subDay())
+            ->with('user')
+            ->latest()
+            ->get()
+            ->groupBy('user_id');
+
+        $monStatut = Status::where('user_id', auth()->id())
+            ->where('created_at', '>=', now()->subDay())
+            ->latest()
+            ->first();
+
         return view('chat.index', [
-            'conversations'        => $conversations,
-            'conversationActive'   => null,
-            'messages'             => collect(),
+            'conversations'      => $conversations,
+            'conversationActive' => null,
+            'messages'           => collect(),
+            'statuses'           => $statuses,
+            'monStatut'          => $monStatut,
         ]);
     }
 
@@ -56,7 +66,7 @@ class ChatController extends Controller
             });
 
         $messages = $conversation->messages()
-            ->with('utilisateur') 
+            ->with('utilisateur')
             ->orderBy('created_at', 'asc')
             ->get();
 
@@ -64,14 +74,26 @@ class ChatController extends Controller
             'last_read_at' => now(),
         ]);
 
+        $statuses = Status::where('created_at', '>=', now()->subDay())
+            ->with('user')
+            ->latest()
+            ->get()
+            ->groupBy('user_id');
+
+        $monStatut = Status::where('user_id', auth()->id())
+            ->where('created_at', '>=', now()->subDay())
+            ->latest()
+            ->first();
+
         return view('chat.index', [
             'conversations'      => $conversations,
             'conversationActive' => $conversation,
             'messages'           => $messages,
+            'statuses'           => $statuses,
+            'monStatut'          => $monStatut,
         ]);
     }
 
-   
     public function create(Request $request)
     {
         $request->validate([
@@ -98,7 +120,6 @@ class ChatController extends Controller
             'type' => 'private',
         ]);
 
-        
         $conversation->utilisateurs()->attach([
             auth()->id(),
             $autreUserId,
